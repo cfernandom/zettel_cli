@@ -1,0 +1,15 @@
+[package]
+name = "zettel_cli"
+version = "0.1.0"
+edition = "2024"
+authors = ["Cristhian Fernando Moreno Manrique"]
+description = "Un CLI para gestionar notas Zettelkasten"
+repository = "https://github.com/cfernandom/zettel_cli"
+license = "MIT"
+keywords = ["zettelkasten", "notes", "cli", "productivity"]
+categories = ["command-line-utilities"]
+readme = "README.md"
+
+[dependencies]
+chrono = "0.4"
+clap = { version = "4.4", features = ["derive"] }
