@@ -26,29 +26,80 @@ Como desarrollador que aprende Rust y arquitectura de software, necesitaba una h
 
 ## Instalación
 
-### Desde el código fuente
+### Instalación automática
 ```bash
-# Clonar el repositorio (o descargar)
+# Clonar el repositorio
 git clone https://github.com/cfernandom/zettel_cli.git
 cd zettel_cli
 
-# Compilar e instalar
-cargo install --path .
+# Instalar (compila y configura templates)
+./install.sh
 
 # Verificar instalación
 zettel --version
 ```
 
-### Configuración inicial
+Esto:
+1. Compila el binario en modo release y lo instala en `~/.cargo/bin/`
+2. Copia los templates a `~/.config/zettel/templates/`
 
-Crea la estructura de carpetas en tu directorio de notas (ej: `~/segundo_cerebro`):
+### Instalación manual
 ```bash
-mkdir -p 000-inbox 001-permanent 002-literature 003-projects 004-maps
+# Clonar el repositorio
+git clone https://github.com/cfernandom/zettel_cli.git
+cd zettel_cli
+
+# Compilar e instalar binario
+cargo install --path .
+
+# Copiar templates manualmente
+mkdir -p ~/.config/zettel/templates/directories
+cp -r templates/* ~/.config/zettel/templates/
+
+# Verificar instalación
+zettel --version
+```
+
+### Variables de entorno (opcional)
+
+Puedes personalizar la ubicación de los templates:
+```bash
+# En tu .bashrc o .zshrc
+export ZETTEL_TEMPLATES_DIR="/ruta/personalizada/templates"
+```
+
+## Personalización
+
+### Editar templates
+
+Los templates están en `~/.config/zettel/templates/`:
+```bash
+# Editar template de nota permanente
+nano ~/.config/zettel/templates/permanent-note.md
+
+# Editar README de inbox
+nano ~/.config/zettel/templates/directories/000-inbox.md
 ```
 
 ## Uso
 
 ### Comandos disponibles
+
+#### Inicializar estructura de directorios
+
+Para crear la estructura de directorios inicial:
+```bash
+zettel init
+```
+
+Resultado:
+```
+000-inbox/
+100-permanent/
+200-literature/
+300-projects/
+400-maps/
+```
 
 #### Crear nota rápida (inbox)
 
@@ -76,7 +127,7 @@ zettel new "Título de la nota"
 zettel new "Pattern matching vs switch"
 ```
 
-Resultado: `001-permanent/20241217154530 - Pattern matching vs switch.md`
+Resultado: `100-permanent/20241217154530 - Pattern matching vs switch.md`
 
 La nota incluirá un template con secciones:
 - Contexto
